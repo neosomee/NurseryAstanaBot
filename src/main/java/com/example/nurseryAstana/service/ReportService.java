@@ -29,9 +29,14 @@ public class ReportService {
         return reportRepository.save(report);
     }
 
-    @Transactional(readOnly=true)
-    public List<Report> getAllReports(User user) {
-        return reportRepository.findAllByOrderByCreatedAtDesc();
+    @Transactional(readOnly = true)
+    public List<Report> findAllReports() {
+        return reportRepository.findAll();
+    }
+
+    @Transactional(readOnly = true)
+    public List<Report> getAllReportsByUser(User user) {
+        return reportRepository.findByUserIdOrderByCreatedAtDesc(user.getId());
     }
 
     @Transactional(readOnly=true)
