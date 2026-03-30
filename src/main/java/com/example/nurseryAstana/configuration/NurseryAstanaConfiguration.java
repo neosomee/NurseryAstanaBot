@@ -1,7 +1,8 @@
 package com.example.nurseryAstana.configuration;
 
 import com.pengrad.telegrambot.TelegramBot;
-import com.pengrad.telegrambot.model.DeleteMyCommands;
+import com.pengrad.telegrambot.request.DeleteMyCommands;
+import com.pengrad.telegrambot.model.botcommandscope.BotCommandScopeDefault;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,9 +15,12 @@ public class NurseryAstanaConfiguration {
 
     @Bean
     public TelegramBot telegramBot() {
-        TelegramBot bot = new TelegramBot(token);
-        bot.execute(new DeleteMyCommands());
-        return bot;
+        TelegramBot telegramBot = new TelegramBot(token);
+
+        DeleteMyCommands deleteMyCommands = new DeleteMyCommands()
+                .scope(new BotCommandScopeDefault());
+        telegramBot.execute(deleteMyCommands);
+        return telegramBot;
     }
 
 }
