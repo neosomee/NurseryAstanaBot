@@ -4,6 +4,6 @@ import com.pengrad.telegrambot.model.Message;
 
 public interface BotCommand {
     boolean supports(String command);
-    void execute(Long charId, Message message);
+    void execute(Long chatId, Message message);
     String getCommand();
 }
