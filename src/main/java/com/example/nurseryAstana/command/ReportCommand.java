@@ -6,6 +6,10 @@ import com.pengrad.telegrambot.model.Message;
 import com.pengrad.telegrambot.request.SendMessage;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+/**
+ * Обработчик команды /report.
+ * Инициирует процесс отправки обращения/жалобы с фото и описанием.
+ */
 
 @Slf4j
 @AllArgsConstructor

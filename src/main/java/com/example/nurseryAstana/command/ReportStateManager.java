@@ -5,6 +5,11 @@ import org.springframework.stereotype.Component;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * Менеджер состояния процесса создания репорта.
+ * Хранит временные данные для каждого пользователя: ожидание фото/текста и временный fileId фото.
+ * Использует потокобезопасные коллекции для работы в многопоточной среде.
+ */
 @Component
 public class ReportStateManager {
 

@@ -7,6 +7,11 @@ import com.pengrad.telegrambot.request.SendMessage;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Обработчик команды /start.
+ * Приветствует пользователя, регистрирует его в системе и отображает доступные команды.
+ */
+
 @Slf4j
 @AllArgsConstructor
 public class StartCommand implements BotCommand {
