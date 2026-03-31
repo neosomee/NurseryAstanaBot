@@ -8,6 +8,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+/**
+ * Сервис для управления пользователями.
+ * Предоставляет операции поиска, создания и получения списка пользователей.
+ */
 
 @Service
 public class UserService {

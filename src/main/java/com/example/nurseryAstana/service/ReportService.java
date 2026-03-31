@@ -9,6 +9,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+/**
+ * Сервис для управления репортами/обращениями.
+ * Предоставляет операции сохранения и получения списка обращений.
+ */
 
 @Service
 public class ReportService {

@@ -17,6 +17,17 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+/**
+ * Слушатель обновлений от Telegram Bot API.
+ * Обрабатывает входящие сообщения, команды и состояния диалога.
+ *
+ * <p>Основные функции:
+ * <ul>
+ *   <li>Обработка команд через реализацию паттерна "Команда"</li>
+ *   <li>Управление состоянием создания репортов (фото + текст)</li>
+ *   <li>Логирование всех входящих обновлений</li>
+ * </ul>
+ */
 @Component
 @Slf4j
 @RequiredArgsConstructor

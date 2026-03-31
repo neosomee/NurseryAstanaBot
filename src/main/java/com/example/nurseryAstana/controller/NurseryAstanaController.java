@@ -11,6 +11,21 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ * REST контроллер для управления данными питомника.
+ * Предоставляет API endpoints для получения информации о пользователях и репортах.
+ *
+ * <p>Базовый путь: {@code /api}
+ *
+ * <p>Доступные endpoints:
+ * <ul>
+ *   <li>GET /api/users - получить список всех пользователей</li>
+ *   <li>GET /api/reports - получить список всех репортов/обращений</li>
+ * </ul>
+ *
+ * @author Nursery Astana Team
+ * @version 1.0
+ */
 
 @RestController
 @RequestMapping("api")
