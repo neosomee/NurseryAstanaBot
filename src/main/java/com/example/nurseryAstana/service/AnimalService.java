@@ -3,7 +3,6 @@ package com.example.nurseryAstana.service;
 import com.example.nurseryAstana.model.Animal;
 import com.example.nurseryAstana.repository.AnimalRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
