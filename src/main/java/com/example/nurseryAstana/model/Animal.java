@@ -1,10 +1,11 @@
 package com.example.nurseryAstana.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.example.nurseryAstana.model.enums.AnimalStatus;
+import com.example.nurseryAstana.model.enums.Species;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Getter @Setter
@@ -12,6 +13,7 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class Animal {
+
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
@@ -21,13 +23,15 @@ public class Animal {
     private int age;
     private String breed;
     private String description;
+    private AnimalStatus status;
 
+    @Column(name = "created_at", insertable = false, updatable = false)
+    private LocalDateTime createdAt;
 
-    //пока не понял какой может быть статус для животного.
-    //private String status;
-
-    //Ещё не создан
-    //private ShelterId;
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = LocalDateTime.now();
+    }
 
 
 }
