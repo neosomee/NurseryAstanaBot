@@ -6,6 +6,8 @@ import com.pengrad.telegrambot.model.Message;
 import com.pengrad.telegrambot.request.SendMessage;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
+
 /**
  * Обработчик команды /report.
  * Инициирует процесс отправки обращения/жалобы с фото и описанием.
@@ -13,10 +15,12 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @AllArgsConstructor
+@Component
 public class ReportCommand implements BotCommand {
 
     private final TelegramBot tgBot;
     private final UserService userService;
+    private final ReportStateManager stateManager;
 
     @Override
     public boolean supports(String command) {
@@ -31,6 +35,9 @@ public class ReportCommand implements BotCommand {
     @Override
     public void execute(Long chatId, Message message) {
         log.info("User {} started report process", chatId);
+
+        stateManager.setWaitingForPhoto(chatId, true);
+        stateManager.setWaitingForText(chatId, false);
 
         String reportInstruction = """
             📝 Отправка обращения / жалобы

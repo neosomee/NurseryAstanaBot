@@ -42,6 +42,7 @@ public class TelegramBotUpdatesListener {
 
     @PostConstruct
     public void init() {
+
         commandMap = commands.stream()
                 .collect(Collectors.toMap(
                         BotCommand::getCommand,
@@ -50,18 +51,26 @@ public class TelegramBotUpdatesListener {
 
         log.info("Starting TelegramBotUpdatesListener with commands: {}", commandMap.keySet());
 
-        tgBot.setUpdatesListener(updates -> {
-            for (Update update : updates) {
-                try {
-                    handleUpdate(update);
-                } catch (Exception e) {
-                    log.error("Error handling update: {}", e.getMessage(), e);
-                }
-            }
-            return UpdatesListener.CONFIRMED_UPDATES_ALL;
-        });
+        try {
 
-        log.info("TelegramBotUpdatesListener started successfully");
+            tgBot.setUpdatesListener(updates -> {
+                for (Update update : updates) {
+                    try {
+                        handleUpdate(update);
+                    } catch (Exception e) {
+                        log.error("Error handling update: {}", e.getMessage(), e);
+                    }
+                }
+                return UpdatesListener.CONFIRMED_UPDATES_ALL;
+            });
+
+            log.info("TelegramBotUpdatesListener started successfully");
+
+        } catch (Exception e) {
+
+            log.warn("Telegram API is not available. Listener not started.");
+            log.debug("Error: {}", e.getMessage());
+        }
     }
 
     private void handleUpdate(Update update) {
