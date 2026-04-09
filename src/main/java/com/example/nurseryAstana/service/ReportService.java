@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
+
 /**
  * Сервис для управления репортами/обращениями.
  * Предоставляет операции сохранения и получения списка обращений.
@@ -46,5 +48,10 @@ public class ReportService {
     @Transactional(readOnly=true)
     public List<Report> getUserReport(Long telegramId) {
         return reportRepository.findByTelegramIdOrderByCreatedAtDesc(telegramId);
+    }
+
+    @Transactional(readOnly = true)
+    public Optional<Report> findById(Long id) {
+        return reportRepository.findById(id);
     }
 }

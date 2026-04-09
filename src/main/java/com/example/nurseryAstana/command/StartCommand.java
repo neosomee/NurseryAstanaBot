@@ -4,8 +4,10 @@ import com.example.nurseryAstana.service.UserService;
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.model.Message;
 import com.pengrad.telegrambot.request.SendMessage;
+import liquibase.command.CommandOverride;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
 /**
  * Обработчик команды /start.
@@ -14,6 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @AllArgsConstructor
+@Component
 public class StartCommand implements BotCommand {
 
     private final TelegramBot tgBot;
