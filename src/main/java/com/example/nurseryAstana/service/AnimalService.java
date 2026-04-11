@@ -1,24 +1,33 @@
 package com.example.nurseryAstana.service;
 
+import com.example.nurseryAstana.dto.AnimalDto;
+import com.example.nurseryAstana.dto.mapper.AnimalMapping;
 import com.example.nurseryAstana.model.Animal;
 import com.example.nurseryAstana.repository.AnimalRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
 public class AnimalService {
 
     private final AnimalRepository animalRepository;
+    private final AnimalMapping animalMapping;
 
-    public List<Animal> findAllAnimal() {
-        return animalRepository.findAll();
+    public List<AnimalDto> findAllAnimal() {
+        return animalRepository.findAll()
+                .stream()
+                .map(animalMapping::toDTO)
+                .collect(Collectors.toList());
     }
 
-    public Animal findAnimalById (Long id) {
-        return animalRepository.findById(id).orElse(null);
+    public Optional<AnimalDto> findAnimalById (Long id) {
+        return animalRepository.findById(id)
+                .map(animalMapping::toDTO);
     }
 
     public Animal createAnimal(Animal animal) {

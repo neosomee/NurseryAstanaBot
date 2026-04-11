@@ -1,5 +1,6 @@
 package com.example.nurseryAstana.controller;
 
+import com.example.nurseryAstana.dto.AnimalDto;
 import com.example.nurseryAstana.model.Animal;
 import com.example.nurseryAstana.service.AnimalService;
 import lombok.AllArgsConstructor;
@@ -7,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/animal")
@@ -16,13 +18,13 @@ public class AnimalController {
     AnimalService animalService;
 
     @GetMapping
-    public ResponseEntity<List<Animal>> findAll() {
-        List<Animal> animals =animalService.findAllAnimal();
+    public ResponseEntity<List<AnimalDto>> findAll() {
+        List<AnimalDto> animals =animalService.findAllAnimal();
         return ResponseEntity.ok(animals);
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<Animal> findById(@PathVariable Long id) {
+    public ResponseEntity<Optional<AnimalDto>> findById(@PathVariable Long id) {
         return ResponseEntity.ok(animalService.findAnimalById(id));
     }
 
@@ -42,7 +44,7 @@ public class AnimalController {
         return ResponseEntity.noContent().build();
     }
 
-    @DeleteMapping
+    @DeleteMapping("/remove/all")
     public ResponseEntity<Void> deleteAllAnimal() {
         animalService.removeAllAnimals();
         return ResponseEntity.noContent().build();
