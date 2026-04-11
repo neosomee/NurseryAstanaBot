@@ -29,12 +29,12 @@ public class AnimalController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Animal> saveAnimal(@RequestBody Animal animal) {
+    public ResponseEntity<AnimalDto> saveAnimal(@RequestBody AnimalDto animal) {
         return ResponseEntity.ok(animalService.createAnimal(animal));
     }
 
     @PutMapping("/update")
-    public ResponseEntity<Animal> updateAnimal(@RequestBody Animal animal) {
+    public ResponseEntity<AnimalDto> updateAnimal(@RequestBody AnimalDto animal) {
         return ResponseEntity.ok(animalService.updateAnimal(animal));
     }
 

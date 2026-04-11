@@ -30,12 +30,16 @@ public class AnimalService {
                 .map(animalMapping::toDTO);
     }
 
-    public Animal createAnimal(Animal animal) {
-        return animalRepository.save(animal);
+    public AnimalDto createAnimal(AnimalDto animalDto) {
+        Animal animal = animalMapping.toAnimal(animalDto);
+        Animal savedAnimal = animalRepository.save(animal);
+        return animalMapping.toDTO(savedAnimal);
     }
 
-    public Animal updateAnimal(Animal animal) {
-        return animalRepository.save(animal);
+    public AnimalDto updateAnimal(AnimalDto animalDto) {
+        Animal animal = animalMapping.toAnimal(animalDto);
+        Animal savedAnimal = animalRepository.save(animal);
+        return animalMapping.toDTO(savedAnimal);
     }
 
     public void removeAnimalById(Long animalId) {

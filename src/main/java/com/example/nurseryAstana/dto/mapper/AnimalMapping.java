@@ -7,4 +7,5 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface AnimalMapping {
     AnimalDto toDTO(Animal animal);
+    Animal toAnimal(AnimalDto animalDto);
 }
