@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
  * Обработчик команды /report.
  * Инициирует процесс отправки обращения/жалобы с фото и описанием.
  */
-
 @Slf4j
 @AllArgsConstructor
 @Component
