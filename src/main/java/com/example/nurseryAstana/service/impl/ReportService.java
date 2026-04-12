@@ -1,4 +1,4 @@
-package com.example.nurseryAstana.service;
+package com.example.nurseryAstana.service.impl;
 
 import com.example.nurseryAstana.model.Report;
 import com.example.nurseryAstana.model.User;

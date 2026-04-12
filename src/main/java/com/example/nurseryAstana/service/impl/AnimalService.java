@@ -1,4 +1,4 @@
-package com.example.nurseryAstana.service;
+package com.example.nurseryAstana.service.impl;
 
 import com.example.nurseryAstana.dto.AnimalDto;
 import com.example.nurseryAstana.dto.mapper.AnimalMapping;

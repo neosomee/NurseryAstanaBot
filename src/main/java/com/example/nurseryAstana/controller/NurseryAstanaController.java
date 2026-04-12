@@ -2,8 +2,8 @@ package com.example.nurseryAstana.controller;
 
 import com.example.nurseryAstana.model.Report;
 import com.example.nurseryAstana.model.User;
-import com.example.nurseryAstana.service.ReportService;
-import com.example.nurseryAstana.service.UserService;
+import com.example.nurseryAstana.service.impl.ReportService;
+import com.example.nurseryAstana.service.impl.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
