@@ -22,7 +22,7 @@ public class User {
     @Column(name = "username")
     private String username;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL ,fetch = FetchType.LAZY)
     private List<Adoption> adoptions;
 
     public User(Long telegramId, String username) {

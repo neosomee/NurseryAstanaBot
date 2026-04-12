@@ -26,7 +26,7 @@ public class Animal {
     private String breed;
     private String description;
 
-    @OneToMany(mappedBy = "animal")
+    @OneToMany(mappedBy = "animal", cascade = CascadeType.ALL ,fetch = FetchType.LAZY)
     private List<Adoption> adoptions;
 
 
