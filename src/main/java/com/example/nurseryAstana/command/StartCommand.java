@@ -40,16 +40,16 @@ public class StartCommand implements BotCommand {
         userService.createOrGetUser(telegramId, username);
         log.info("User created/found: telegramId={}, username={}", telegramId, username);
 
-        String welcomeText = """
-            🐾 Добро пожаловать в питомник "Nursery Astana"! 🐾
-            
-            Доступные команды:
-            /start - показать это сообщение
-            /help - помощь
-            /report - отправить обращение
-            
-            Чем могу помочь? 🌟
-            """;
+        String welcomeText =  "Привет! 👋\n" +
+                "\n" +
+                "\uD83D\uDC3E Добро пожаловать в питомник «Astana Nursery». \uD83D\uDC3E\n" +
+                "Помогаю отправлять отчёты о питомцах.\n" +
+                "\n" +
+                "Чтобы начать — набери:\n" +
+                "/report\n" +
+                "\n" +
+                "Если нужно описание всех команд — используй:\n" +
+                "/help";
 
         SendMessage request = new SendMessage(chatId, welcomeText);
         tgBot.execute(request);
