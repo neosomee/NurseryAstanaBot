@@ -25,8 +25,8 @@ public class Adoption {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    private LocalDateTime startTime;
-    private LocalDateTime endTime;
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
     private AdoptionStatus status;
 
 }

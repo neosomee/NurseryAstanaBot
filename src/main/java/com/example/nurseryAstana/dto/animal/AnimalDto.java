@@ -1,4 +1,4 @@
-package com.example.nurseryAstana.dto;
+package com.example.nurseryAstana.dto.animal;
 
 import com.example.nurseryAstana.model.enums.AnimalStatus;
 import com.example.nurseryAstana.model.enums.Species;
