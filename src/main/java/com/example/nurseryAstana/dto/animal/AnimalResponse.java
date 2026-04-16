@@ -5,10 +5,11 @@ import com.example.nurseryAstana.model.enums.Species;
 import lombok.Data;
 
 @Data
-public class AnimalDto {
+public class AnimalResponse {
+    private Long id;
     private Species species;
     private String name;
-    private int age;
+    private Integer age;
     private String breed;
     private String description;
     private AnimalStatus status;
