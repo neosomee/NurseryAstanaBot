@@ -1,4 +1,4 @@
 package com.example.nurseryAstana.dto;
 
-public class AdoptionDto {
+public class UserDto {
 }

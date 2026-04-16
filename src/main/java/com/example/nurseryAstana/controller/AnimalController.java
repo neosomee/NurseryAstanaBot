@@ -1,6 +1,6 @@
 package com.example.nurseryAstana.controller;
 
-import com.example.nurseryAstana.dto.AnimalDto;
+import com.example.nurseryAstana.dto.animal.AnimalDto;
 import com.example.nurseryAstana.service.impl.AnimalService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;

@@ -1,6 +1,6 @@
 package com.example.nurseryAstana.service.impl;
 
-import com.example.nurseryAstana.dto.AnimalDto;
+import com.example.nurseryAstana.dto.animal.AnimalDto;
 import com.example.nurseryAstana.dto.mapper.AnimalMapping;
 import com.example.nurseryAstana.model.Animal;
 import com.example.nurseryAstana.repository.AnimalRepository;
