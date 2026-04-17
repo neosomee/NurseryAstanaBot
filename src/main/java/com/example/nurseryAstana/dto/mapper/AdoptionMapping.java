@@ -15,8 +15,8 @@ public interface AdoptionMapping {
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "animal", ignore = true)
     @Mapping(target = "user", ignore = true)
-    @Mapping(target = "startTime", expression = "java(java.time.LocalDateTime.now())")
-    @Mapping(target = "endTime", expression = "java(java.time.LocalDateTime.now().plusDays(request.getTrialDays()))")
+    @Mapping(target = "startDate", expression = "java(java.time.LocalDateTime.now())")
+    @Mapping(target = "endDate", expression = "java(java.time.LocalDateTime.now().plusDays(request.getTrialDays()))")
     @Mapping(target = "status", constant = "TRIAL")
-    Adoption toAdoption(AdoptionResponse adoptionResponse);
+    Adoption toAdoption(CreateAdoptionRequest request);
 }
