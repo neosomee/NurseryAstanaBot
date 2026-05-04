@@ -6,5 +6,4 @@ import lombok.Data;
 public class CreateAdoptionRequest {
     Long animalId;
     Long userId;
-    Integer trialDays = 30;
 }

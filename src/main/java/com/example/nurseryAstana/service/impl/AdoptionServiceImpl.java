@@ -16,7 +16,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -29,10 +31,24 @@ public class AdoptionServiceImpl implements AdoptionService {
     private final AdoptionMapping adoptionMapping;
 
     @Override
-    public Optional<AdoptionResponse> getAdoptById(Long adoptionId) {
+    public Optional<AdoptionResponse> findAdoptById(Long adoptionId) {
         return adoptionRepository.findById(adoptionId)
                 .map(adoptionMapping::toResponse);
     }
+
+    @Override
+    public List<AdoptionResponse> findAllAdopt() {
+        return adoptionRepository.findAll()
+                .stream()
+                .map(adoptionMapping::toResponse)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public void removeAdoptById(Long adoptionId) {
+        adoptionRepository.deleteById(adoptionId);
+    }
+
 
     @Override
     @Transactional
