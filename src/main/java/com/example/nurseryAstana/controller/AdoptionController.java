@@ -9,9 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-
-import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
-
 @RestController
 @RequestMapping("/adoptions")
 @AllArgsConstructor
@@ -26,7 +23,7 @@ public class AdoptionController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<AdoptionResponse>> getAllAdoption(@RequestBody Long id){
+    public ResponseEntity<Optional<AdoptionResponse>> getAllAdoption(@PathVariable Long id){
         Optional<AdoptionResponse> adoptionResponse = adoptionService.findAdoptById(id);
         return ResponseEntity.ok(adoptionResponse);
     }
@@ -39,5 +36,23 @@ public class AdoptionController {
     public ResponseEntity<AdoptionResponse> removeAdoption(@PathVariable Long id){
         adoptionService.removeAdoptById(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/trialdays/success/{id}")
+    public ResponseEntity<Optional<AdoptionResponse>> trialdaysSuccess(@PathVariable Long id) {
+        Optional<AdoptionResponse> adoptionResponse = adoptionService.finishTrial(id);
+        return ResponseEntity.ok(adoptionResponse);
+    }
+
+    @PutMapping("/trialdays/extend/{id}")
+    public ResponseEntity<Optional<AdoptionResponse>> trialdaysExtend(@PathVariable Long id, @RequestBody int extendId) {
+        Optional<AdoptionResponse> adoptionResponse = adoptionService.extendTrial(id, extendId);
+        return ResponseEntity.ok(adoptionResponse);
+    }
+
+    @PutMapping("/trialdays/fail/{id}")
+    public ResponseEntity<Optional<AdoptionResponse>> trialdaysFail(@PathVariable Long id) {
+        Optional<AdoptionResponse> adoptionResponse = adoptionService.failTrial(id);
+        return ResponseEntity.ok(adoptionResponse);
     }
 }

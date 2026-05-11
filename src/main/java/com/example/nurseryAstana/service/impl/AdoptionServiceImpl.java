@@ -6,12 +6,12 @@ import com.example.nurseryAstana.dto.mapper.AdoptionMapping;
 import com.example.nurseryAstana.model.Adoption;
 import com.example.nurseryAstana.model.Animal;
 import com.example.nurseryAstana.model.User;
+import com.example.nurseryAstana.model.enums.AdoptionStatus;
 import com.example.nurseryAstana.repository.AdoptionRepository;
 import com.example.nurseryAstana.repository.AnimalRepository;
 import com.example.nurseryAstana.repository.UserRepository;
 import com.example.nurseryAstana.service.AdoptionService;
 import jakarta.persistence.EntityNotFoundException;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -73,17 +73,31 @@ public class AdoptionServiceImpl implements AdoptionService {
     }
 
     @Override
-    public Optional<AdoptionResponse> finishTrial(AdoptionResponse adoptionDto) {
-        return Optional.empty();
+    public Optional<AdoptionResponse> finishTrial(Long id) {
+
+        return adoptionRepository.findById(id).map(adoption -> {
+            adoption.setStatus(AdoptionStatus.SUCCESS);
+            return adoptionRepository.save(adoption);
+        })
+                .map(adoptionMapping::toResponse);
     }
 
     @Override
-    public Optional<AdoptionResponse> extendTrial(AdoptionResponse adoptionDto) {
-        return Optional.empty();
+    public Optional<AdoptionResponse> extendTrial(Long id, int daysToAdd) {
+        return adoptionRepository.findById(id).map(
+                adoption -> {
+                    adoption.setStatus(AdoptionStatus.EXTENDS);
+                    adoption.setEndDate(adoption.getEndDate().plusDays(daysToAdd));
+                    return adoptionRepository.save(adoption);
+                }
+        ).map(adoptionMapping::toResponse);
     }
 
     @Override
-    public Optional<AdoptionResponse> failTrial(AdoptionResponse adoptionDto) {
-        return Optional.empty();
+    public Optional<AdoptionResponse> failTrial(Long id) {
+        return adoptionRepository.findById(id).map(adoption -> {
+            adoption.setStatus(AdoptionStatus.FAILED);
+            return adoptionRepository.save(adoption);
+        }).map(adoptionMapping::toResponse);
     }
 }
