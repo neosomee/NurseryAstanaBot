@@ -131,6 +131,14 @@
 			<version>7.1.1</version>
 		</dependency>
 
+		<!-- Кэширование -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-cache</artifactId>
+			<version>4.1.0-RC1</version>
+			<scope>compile</scope>
+		</dependency>
+
 	</dependencies>
 
 	<build>
