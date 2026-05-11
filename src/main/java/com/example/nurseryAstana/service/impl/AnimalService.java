@@ -1,6 +1,7 @@
-package com.example.nurseryAstana.service;
+package com.example.nurseryAstana.service.impl;
 
-import com.example.nurseryAstana.dto.AnimalDto;
+import com.example.nurseryAstana.dto.animal.AnimalResponse;
+import com.example.nurseryAstana.dto.animal.CreateAnimalRequest;
 import com.example.nurseryAstana.dto.mapper.AnimalMapping;
 import com.example.nurseryAstana.model.Animal;
 import com.example.nurseryAstana.repository.AnimalRepository;
@@ -18,28 +19,28 @@ public class AnimalService {
     private final AnimalRepository animalRepository;
     private final AnimalMapping animalMapping;
 
-    public List<AnimalDto> findAllAnimal() {
+    public List<AnimalResponse> findAllAnimal() {
         return animalRepository.findAll()
                 .stream()
-                .map(animalMapping::toDTO)
+                .map(animalMapping::toResponse)
                 .collect(Collectors.toList());
     }
 
-    public Optional<AnimalDto> findAnimalById (Long id) {
+    public Optional<AnimalResponse> findAnimalById (Long id) {
         return animalRepository.findById(id)
-                .map(animalMapping::toDTO);
+                .map(animalMapping::toResponse);
     }
 
-    public AnimalDto createAnimal(AnimalDto animalDto) {
+    public AnimalResponse createAnimal(CreateAnimalRequest animalDto) {
         Animal animal = animalMapping.toAnimal(animalDto);
         Animal savedAnimal = animalRepository.save(animal);
-        return animalMapping.toDTO(savedAnimal);
+        return animalMapping.toResponse(savedAnimal);
     }
 
-    public AnimalDto updateAnimal(AnimalDto animalDto) {
+    public AnimalResponse updateAnimal(CreateAnimalRequest animalDto) {
         Animal animal = animalMapping.toAnimal(animalDto);
         Animal savedAnimal = animalRepository.save(animal);
-        return animalMapping.toDTO(savedAnimal);
+        return animalMapping.toResponse(savedAnimal);
     }
 
     public void removeAnimalById(Long animalId) {

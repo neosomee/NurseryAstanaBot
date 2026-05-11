@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Getter @Setter
@@ -21,14 +22,18 @@ public class Animal {
     @Enumerated(EnumType.STRING)
     private Species species;
     private String name;
-    private int age;
+    private Integer age;
     private String breed;
     private String description;
+
+    @OneToMany(mappedBy = "animal", cascade = CascadeType.ALL ,fetch = FetchType.LAZY)
+    private List<Adoption> adoptions;
+
 
     @Enumerated(EnumType.STRING)
     private AnimalStatus status;
 
-    @Column(name = "created_at", insertable = false, updatable = false)
+    @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
 
     @PrePersist

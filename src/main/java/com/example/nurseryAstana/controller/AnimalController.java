@@ -1,8 +1,8 @@
 package com.example.nurseryAstana.controller;
 
-import com.example.nurseryAstana.dto.AnimalDto;
-import com.example.nurseryAstana.model.Animal;
-import com.example.nurseryAstana.service.AnimalService;
+import com.example.nurseryAstana.dto.animal.AnimalResponse;
+import com.example.nurseryAstana.dto.animal.CreateAnimalRequest;
+import com.example.nurseryAstana.service.impl.AnimalService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,23 +18,23 @@ public class AnimalController {
     AnimalService animalService;
 
     @GetMapping
-    public ResponseEntity<List<AnimalDto>> findAll() {
-        List<AnimalDto> animals =animalService.findAllAnimal();
+    public ResponseEntity<List<AnimalResponse>> findAll() {
+        List<AnimalResponse> animals =animalService.findAllAnimal();
         return ResponseEntity.ok(animals);
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<Optional<AnimalDto>> findById(@PathVariable Long id) {
+    public ResponseEntity<Optional<AnimalResponse>> findById(@PathVariable Long id) {
         return ResponseEntity.ok(animalService.findAnimalById(id));
     }
 
     @PostMapping("/create")
-    public ResponseEntity<AnimalDto> saveAnimal(@RequestBody AnimalDto animal) {
+    public ResponseEntity<AnimalResponse> saveAnimal(@RequestBody CreateAnimalRequest animal) {
         return ResponseEntity.ok(animalService.createAnimal(animal));
     }
 
     @PutMapping("/update")
-    public ResponseEntity<AnimalDto> updateAnimal(@RequestBody AnimalDto animal) {
+    public ResponseEntity<AnimalResponse> updateAnimal(@RequestBody CreateAnimalRequest animal) {
         return ResponseEntity.ok(animalService.updateAnimal(animal));
     }
 

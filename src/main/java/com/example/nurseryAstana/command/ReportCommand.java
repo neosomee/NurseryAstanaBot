@@ -1,6 +1,6 @@
 package com.example.nurseryAstana.command;
 
-import com.example.nurseryAstana.service.UserService;
+import com.example.nurseryAstana.service.impl.UserService;
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.model.Message;
 import com.pengrad.telegrambot.request.SendMessage;
