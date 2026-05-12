@@ -1,7 +1,7 @@
 package com.example.nurseryAstana.backend.animal.dto;
 
 import com.example.nurseryAstana.backend.animal.model.AnimalStatus;
-import com.example.nurseryAstana.model.enums.Species;
+import com.example.nurseryAstana.backend.animal.model.Species;
 import lombok.Data;
 
 @Data
