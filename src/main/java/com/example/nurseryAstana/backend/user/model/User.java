@@ -1,4 +1,4 @@
-package com.example.nurseryAstana.model;
+package com.example.nurseryAstana.backend.user.model;
 
 import com.example.nurseryAstana.backend.adoption.model.Adoption;
 import jakarta.persistence.*;

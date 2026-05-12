@@ -6,7 +6,7 @@ import com.example.nurseryAstana.backend.adoption.mapper.AdoptionMapping;
 import com.example.nurseryAstana.backend.adoption.model.Adoption;
 import com.example.nurseryAstana.backend.adoption.service.AdoptionService;
 import com.example.nurseryAstana.backend.animal.model.Animal;
-import com.example.nurseryAstana.model.User;
+import com.example.nurseryAstana.backend.user.model.User;
 import com.example.nurseryAstana.backend.adoption.model.AdoptionStatus;
 import com.example.nurseryAstana.backend.repository.AdoptionRepository;
 import com.example.nurseryAstana.backend.repository.AnimalRepository;

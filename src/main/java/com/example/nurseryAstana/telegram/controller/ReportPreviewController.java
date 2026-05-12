@@ -1,7 +1,7 @@
 package com.example.nurseryAstana.telegram.controller;
 
-import com.example.nurseryAstana.model.Report;
-import com.example.nurseryAstana.service.impl.ReportService;
+import com.example.nurseryAstana.backend.report.model.Report;
+import com.example.nurseryAstana.backend.report.service.ReportService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;

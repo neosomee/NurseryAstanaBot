@@ -1,6 +1,6 @@
 package com.example.nurseryAstana.backend.repository;
 
-import com.example.nurseryAstana.model.Report;
+import com.example.nurseryAstana.backend.report.model.Report;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

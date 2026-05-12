@@ -1,6 +1,6 @@
-package com.example.nurseryAstana.service.impl;
+package com.example.nurseryAstana.backend.user.service.imple;
 
-import com.example.nurseryAstana.model.User;
+import com.example.nurseryAstana.backend.user.model.User;
 import com.example.nurseryAstana.backend.repository.UserRepository;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +14,12 @@ import java.util.Optional;
  */
 
 @Service
-public class UserService {
+public class UserServiceImple {
 
     private final UserRepository userRepository;
 
     @Autowired
-    public UserService(UserRepository userRepository) {
+    public UserServiceImple(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 

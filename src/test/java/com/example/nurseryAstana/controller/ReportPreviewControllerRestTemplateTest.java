@@ -1,7 +1,7 @@
 //package com.example.nurseryAstana.controller;
 //
 //
-//import com.example.nurseryAstana.model.Report;
+//import com.example.nurseryAstana.backend.report.model.Report;
 //import com.example.nurseryAstana.service.ReportService;
 //import org.junit.jupiter.api.BeforeEach;
 //import org.junit.jupiter.api.Test;

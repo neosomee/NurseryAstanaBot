@@ -1,4 +1,4 @@
-package com.example.nurseryAstana.service.impl;
+package com.example.nurseryAstana.backend.report.service;
 
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.request.GetFile;

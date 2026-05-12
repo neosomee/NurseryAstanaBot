@@ -1,9 +1,9 @@
 package com.example.nurseryAstana.telegram.controller;
 
-import com.example.nurseryAstana.model.Report;
-import com.example.nurseryAstana.model.User;
-import com.example.nurseryAstana.service.impl.ReportService;
-import com.example.nurseryAstana.service.impl.UserService;
+import com.example.nurseryAstana.backend.report.model.Report;
+import com.example.nurseryAstana.backend.user.model.User;
+import com.example.nurseryAstana.backend.report.service.ReportService;
+import com.example.nurseryAstana.backend.user.service.imple.UserServiceImple;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,9 +32,9 @@ import java.util.List;
 public class NurseryAstanaController {
 
     private final ReportService reportService;
-    private final UserService userService;
+    private final UserServiceImple userService;
 
-    public NurseryAstanaController(ReportService reportService, UserService userService) {
+    public NurseryAstanaController(ReportService reportService, UserServiceImple userService) {
         this.reportService = reportService;
         this.userService = userService;
     }

@@ -1,7 +1,7 @@
 //package com.example.nurseryAstana.controller;
 //
-//import com.example.nurseryAstana.model.Report;
-//import com.example.nurseryAstana.model.User;
+//import com.example.nurseryAstana.backend.report.model.Report;
+//import com.example.nurseryAstana.backend.user.model.User;
 //import com.example.nurseryAstana.service.ReportService;
 //import com.example.nurseryAstana.service.UserService;
 //import org.junit.jupiter.api.Test;

@@ -1,6 +1,6 @@
 package com.example.nurseryAstana.telegram.command;
 
-import com.example.nurseryAstana.service.impl.UserService;
+import com.example.nurseryAstana.backend.user.service.imple.UserServiceImple;
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.model.Message;
 import com.pengrad.telegrambot.request.SendMessage;
@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
 public class ReportCommand implements BotCommand {
 
     private final TelegramBot tgBot;
-    private final UserService userService;
+    private final UserServiceImple userService;
     private final ReportStateManager stateManager;
 
     @Override

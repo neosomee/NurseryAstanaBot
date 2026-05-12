@@ -1,5 +1,6 @@
-package com.example.nurseryAstana.model;
+package com.example.nurseryAstana.backend.report.model;
 
+import com.example.nurseryAstana.backend.user.model.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;

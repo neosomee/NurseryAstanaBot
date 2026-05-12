@@ -1,6 +1,6 @@
 //package com.example.nurseryAstana.controller;
 //
-//import com.example.nurseryAstana.model.User;
+//import com.example.nurseryAstana.backend.user.model.User;
 //import org.junit.jupiter.api.Test;
 //import org.springframework.boot.test.context.SpringBootTest;
 //import org.springframework.boot.test.web.server.LocalServerPort;

@@ -1,7 +1,7 @@
 package com.example.nurseryAstana.backend.adoption.model;
 
 import com.example.nurseryAstana.backend.animal.model.Animal;
-import com.example.nurseryAstana.model.User;
+import com.example.nurseryAstana.backend.user.model.User;
 import jakarta.persistence.*;
 import lombok.*;
 
