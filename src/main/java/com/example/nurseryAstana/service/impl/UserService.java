@@ -1,7 +1,7 @@
 package com.example.nurseryAstana.service.impl;
 
 import com.example.nurseryAstana.model.User;
-import com.example.nurseryAstana.repository.UserRepository;
+import com.example.nurseryAstana.backend.repository.UserRepository;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,6 @@
-package com.example.nurseryAstana.dto.adoption;
+package com.example.nurseryAstana.backend.adoption.dto;
 
-import com.example.nurseryAstana.model.enums.AdoptionStatus;
+import com.example.nurseryAstana.backend.adoption.model.AdoptionStatus;
 import lombok.Data;
 
 import java.time.LocalDateTime;

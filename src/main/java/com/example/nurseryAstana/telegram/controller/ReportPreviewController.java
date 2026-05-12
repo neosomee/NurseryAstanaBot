@@ -1,4 +1,4 @@
-package com.example.nurseryAstana.controller;
+package com.example.nurseryAstana.telegram.controller;
 
 import com.example.nurseryAstana.model.Report;
 import com.example.nurseryAstana.service.impl.ReportService;

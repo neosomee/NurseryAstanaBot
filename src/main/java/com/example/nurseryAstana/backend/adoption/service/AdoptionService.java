@@ -1,7 +1,7 @@
-package com.example.nurseryAstana.service;
+package com.example.nurseryAstana.backend.adoption.service;
 
-import com.example.nurseryAstana.dto.adoption.AdoptionResponse;
-import com.example.nurseryAstana.dto.adoption.CreateAdoptionRequest;
+import com.example.nurseryAstana.backend.adoption.dto.AdoptionResponse;
+import com.example.nurseryAstana.backend.adoption.dto.CreateAdoptionRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

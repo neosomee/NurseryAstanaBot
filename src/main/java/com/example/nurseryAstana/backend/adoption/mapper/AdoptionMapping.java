@@ -1,8 +1,8 @@
-package com.example.nurseryAstana.dto.mapper;
+package com.example.nurseryAstana.backend.adoption.mapper;
 
-import com.example.nurseryAstana.dto.adoption.AdoptionResponse;
-import com.example.nurseryAstana.dto.adoption.CreateAdoptionRequest;
-import com.example.nurseryAstana.model.Adoption;
+import com.example.nurseryAstana.backend.adoption.dto.AdoptionResponse;
+import com.example.nurseryAstana.backend.adoption.dto.CreateAdoptionRequest;
+import com.example.nurseryAstana.backend.adoption.model.Adoption;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

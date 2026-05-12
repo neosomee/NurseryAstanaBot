@@ -1,16 +1,16 @@
-package com.example.nurseryAstana.service.impl;
+package com.example.nurseryAstana.backend.adoption.service.imple;
 
-import com.example.nurseryAstana.dto.adoption.AdoptionResponse;
-import com.example.nurseryAstana.dto.adoption.CreateAdoptionRequest;
-import com.example.nurseryAstana.dto.mapper.AdoptionMapping;
-import com.example.nurseryAstana.model.Adoption;
+import com.example.nurseryAstana.backend.adoption.dto.AdoptionResponse;
+import com.example.nurseryAstana.backend.adoption.dto.CreateAdoptionRequest;
+import com.example.nurseryAstana.backend.adoption.mapper.AdoptionMapping;
+import com.example.nurseryAstana.backend.adoption.model.Adoption;
+import com.example.nurseryAstana.backend.adoption.service.AdoptionService;
 import com.example.nurseryAstana.backend.animal.model.Animal;
 import com.example.nurseryAstana.model.User;
-import com.example.nurseryAstana.model.enums.AdoptionStatus;
-import com.example.nurseryAstana.repository.AdoptionRepository;
-import com.example.nurseryAstana.repository.AnimalRepository;
-import com.example.nurseryAstana.repository.UserRepository;
-import com.example.nurseryAstana.service.AdoptionService;
+import com.example.nurseryAstana.backend.adoption.model.AdoptionStatus;
+import com.example.nurseryAstana.backend.repository.AdoptionRepository;
+import com.example.nurseryAstana.backend.repository.AnimalRepository;
+import com.example.nurseryAstana.backend.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

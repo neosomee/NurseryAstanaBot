@@ -1,5 +1,6 @@
 package com.example.nurseryAstana.model;
 
+import com.example.nurseryAstana.backend.adoption.model.Adoption;
 import jakarta.persistence.*;
 import lombok.*;
 

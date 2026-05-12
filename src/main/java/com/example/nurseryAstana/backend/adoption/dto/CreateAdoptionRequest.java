@@ -1,4 +1,4 @@
-package com.example.nurseryAstana.dto.adoption;
+package com.example.nurseryAstana.backend.adoption.dto;
 
 import lombok.Data;
 

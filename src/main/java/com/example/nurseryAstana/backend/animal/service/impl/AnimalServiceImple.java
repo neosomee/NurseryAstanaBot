@@ -4,7 +4,7 @@ import com.example.nurseryAstana.backend.animal.dto.AnimalResponse;
 import com.example.nurseryAstana.backend.animal.dto.CreateAnimalRequest;
 import com.example.nurseryAstana.backend.animal.mapper.AnimalMapping;
 import com.example.nurseryAstana.backend.animal.model.Animal;
-import com.example.nurseryAstana.repository.AnimalRepository;
+import com.example.nurseryAstana.backend.repository.AnimalRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -1,8 +1,8 @@
-package com.example.nurseryAstana.controller;
+package com.example.nurseryAstana.backend.adoption.controller;
 
-import com.example.nurseryAstana.dto.adoption.AdoptionResponse;
-import com.example.nurseryAstana.dto.adoption.CreateAdoptionRequest;
-import com.example.nurseryAstana.service.impl.AdoptionServiceImpl;
+import com.example.nurseryAstana.backend.adoption.dto.AdoptionResponse;
+import com.example.nurseryAstana.backend.adoption.dto.CreateAdoptionRequest;
+import com.example.nurseryAstana.backend.adoption.service.imple.AdoptionServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

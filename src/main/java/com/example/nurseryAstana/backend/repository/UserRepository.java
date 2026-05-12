@@ -1,4 +1,4 @@
-package com.example.nurseryAstana.repository;
+package com.example.nurseryAstana.backend.repository;
 import com.example.nurseryAstana.model.User;
 
 import org.springframework.data.jpa.repository.JpaRepository;

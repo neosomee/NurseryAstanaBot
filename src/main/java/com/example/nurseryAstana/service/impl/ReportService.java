@@ -2,7 +2,7 @@ package com.example.nurseryAstana.service.impl;
 
 import com.example.nurseryAstana.model.Report;
 import com.example.nurseryAstana.model.User;
-import com.example.nurseryAstana.repository.ReportRepository;
+import com.example.nurseryAstana.backend.repository.ReportRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
