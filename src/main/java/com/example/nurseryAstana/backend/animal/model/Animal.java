@@ -1,0 +1,44 @@
+package com.example.nurseryAstana.backend.animal.model;
+
+import com.example.nurseryAstana.backend.adoption.model.Adoption;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.time.LocalDateTime;
+import java.util.List;
+
+@Entity
+@Getter @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class Animal {
+
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    private Long id;
+
+    @Enumerated(EnumType.STRING)
+    private Species species;
+    private String name;
+    private Integer age;
+    private String breed;
+    private String description;
+
+    @OneToMany(mappedBy = "animal", cascade = CascadeType.ALL ,fetch = FetchType.LAZY)
+    private List<Adoption> adoptions;
+
+
+    @Enumerated(EnumType.STRING)
+    private AnimalStatus status;
+
+    @Column(name = "created_at", updatable = false)
+    private LocalDateTime createdAt;
+
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = LocalDateTime.now();
+    }
+
+
+}
