@@ -1,4 +1,4 @@
-package com.example.nurseryAstana.command;
+package com.example.nurseryAstana.telegram.command;
 
 import com.example.nurseryAstana.service.impl.ReportPhotoService;
 import com.example.nurseryAstana.service.impl.ReportService;

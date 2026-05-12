@@ -1,4 +1,4 @@
-package com.example.nurseryAstana.configuration;
+package com.example.nurseryAstana.telegram.configuration;
 
 import com.pengrad.telegrambot.TelegramBot;
 import lombok.extern.slf4j.Slf4j;

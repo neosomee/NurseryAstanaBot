@@ -1,9 +1,9 @@
-package com.example.nurseryAstana.service.impl;
+package com.example.nurseryAstana.backend.animal.service.impl;
 
-import com.example.nurseryAstana.dto.animal.AnimalResponse;
-import com.example.nurseryAstana.dto.animal.CreateAnimalRequest;
-import com.example.nurseryAstana.dto.mapper.AnimalMapping;
-import com.example.nurseryAstana.model.Animal;
+import com.example.nurseryAstana.backend.animal.dto.AnimalResponse;
+import com.example.nurseryAstana.backend.animal.dto.CreateAnimalRequest;
+import com.example.nurseryAstana.backend.animal.mapper.AnimalMapping;
+import com.example.nurseryAstana.backend.animal.model.Animal;
 import com.example.nurseryAstana.repository.AnimalRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
-public class AnimalService {
+public class AnimalServiceImple {
 
     private final AnimalRepository animalRepository;
     private final AnimalMapping animalMapping;

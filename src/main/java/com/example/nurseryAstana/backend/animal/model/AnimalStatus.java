@@ -1,4 +1,4 @@
-package com.example.nurseryAstana.model.enums;
+package com.example.nurseryAstana.backend.animal.model;
 
 public enum AnimalStatus {
     SEEKS_HOME("Ищет дом"),

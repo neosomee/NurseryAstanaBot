@@ -1,6 +1,6 @@
-package com.example.nurseryAstana.dto.animal;
+package com.example.nurseryAstana.backend.animal.dto;
 
-import com.example.nurseryAstana.model.enums.AnimalStatus;
+import com.example.nurseryAstana.backend.animal.model.AnimalStatus;
 import com.example.nurseryAstana.model.enums.Species;
 import lombok.Data;
 

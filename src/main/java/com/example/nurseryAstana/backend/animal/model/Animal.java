@@ -1,6 +1,6 @@
-package com.example.nurseryAstana.model;
+package com.example.nurseryAstana.backend.animal.model;
 
-import com.example.nurseryAstana.model.enums.AnimalStatus;
+import com.example.nurseryAstana.model.Adoption;
 import com.example.nurseryAstana.model.enums.Species;
 import jakarta.persistence.*;
 import lombok.*;

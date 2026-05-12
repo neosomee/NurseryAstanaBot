@@ -1,4 +1,4 @@
-package com.example.nurseryAstana.init;
+package com.example.nurseryAstana.telegram.init;
 
 
 import com.pengrad.telegrambot.TelegramBot;

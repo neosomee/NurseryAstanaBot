@@ -1,8 +1,8 @@
-package com.example.nurseryAstana.controller;
+package com.example.nurseryAstana.backend.animal.controller;
 
-import com.example.nurseryAstana.dto.animal.AnimalResponse;
-import com.example.nurseryAstana.dto.animal.CreateAnimalRequest;
-import com.example.nurseryAstana.service.impl.AnimalService;
+import com.example.nurseryAstana.backend.animal.dto.AnimalResponse;
+import com.example.nurseryAstana.backend.animal.dto.CreateAnimalRequest;
+import com.example.nurseryAstana.backend.animal.service.impl.AnimalServiceImple;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +15,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class AnimalController {
 
-    AnimalService animalService;
+    AnimalServiceImple animalService;
 
     @GetMapping
     public ResponseEntity<List<AnimalResponse>> findAll() {

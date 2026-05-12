@@ -4,7 +4,7 @@ import com.example.nurseryAstana.dto.adoption.AdoptionResponse;
 import com.example.nurseryAstana.dto.adoption.CreateAdoptionRequest;
 import com.example.nurseryAstana.dto.mapper.AdoptionMapping;
 import com.example.nurseryAstana.model.Adoption;
-import com.example.nurseryAstana.model.Animal;
+import com.example.nurseryAstana.backend.animal.model.Animal;
 import com.example.nurseryAstana.model.User;
 import com.example.nurseryAstana.model.enums.AdoptionStatus;
 import com.example.nurseryAstana.repository.AdoptionRepository;
