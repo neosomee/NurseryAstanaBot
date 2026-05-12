@@ -7,7 +7,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
-public interface AdoptionMapping {
+public interface AdoptionDtoMapping {
     @Mapping(target = "animalId", expression = "java(adoption.getAnimal().getId())")
     @Mapping(target = "userId", expression = "java(adoption.getUser().getId())")
     AdoptionResponse toResponse(Adoption adoption);

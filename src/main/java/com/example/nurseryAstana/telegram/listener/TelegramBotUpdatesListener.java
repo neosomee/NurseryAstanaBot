@@ -1,8 +1,8 @@
 package com.example.nurseryAstana.telegram.listener;
 
-import com.example.nurseryAstana.telegram.BotCommand;
-import com.example.nurseryAstana.telegram.ReportFlowHandler;
-import com.example.nurseryAstana.telegram.ReportStateManager;
+import com.example.nurseryAstana.telegram.command.BotCommand;
+import com.example.nurseryAstana.telegram.command.ReportFlowHandler;
+import com.example.nurseryAstana.telegram.command.ReportStateManager;
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.UpdatesListener;
 import com.pengrad.telegrambot.model.Update;
