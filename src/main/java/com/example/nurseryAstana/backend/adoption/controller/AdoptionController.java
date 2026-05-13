@@ -39,20 +39,17 @@ public class AdoptionController {
     }
 
     @PutMapping("/trialdays/success/{id}")
-    public ResponseEntity<Optional<AdoptionResponse>> trialdaysSuccess(@PathVariable Long id) {
-        Optional<AdoptionResponse> adoptionResponse = adoptionService.finishTrial(id);
-        return ResponseEntity.ok(adoptionResponse);
+    public ResponseEntity<AdoptionResponse> trialdaysSuccess(@PathVariable Long id) {
+        return ResponseEntity.ok(adoptionService.finishTrial(id));
     }
 
     @PutMapping("/trialdays/extend/{id}")
-    public ResponseEntity<Optional<AdoptionResponse>> trialdaysExtend(@PathVariable Long id, @RequestBody int extendId) {
-        Optional<AdoptionResponse> adoptionResponse = adoptionService.extendTrial(id, extendId);
-        return ResponseEntity.ok(adoptionResponse);
+    public ResponseEntity<AdoptionResponse> trialdaysExtend(@PathVariable Long id, @RequestBody int extendId) {
+        return ResponseEntity.ok(adoptionService.extendTrial(id, extendId));
     }
 
     @PutMapping("/trialdays/fail/{id}")
-    public ResponseEntity<Optional<AdoptionResponse>> trialdaysFail(@PathVariable Long id) {
-        Optional<AdoptionResponse> adoptionResponse = adoptionService.failTrial(id);
-        return ResponseEntity.ok(adoptionResponse);
+    public ResponseEntity<AdoptionResponse> trialdaysFail(@PathVariable Long id) {
+        return ResponseEntity.ok(adoptionService.failTrial(id));
     }
 }
