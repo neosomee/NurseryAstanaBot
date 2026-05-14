@@ -23,9 +23,10 @@ public class AdoptionController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<AdoptionResponse>> getAllAdoption(@PathVariable Long id){
+    public ResponseEntity<AdoptionResponse> getAllAdoption(@PathVariable Long id){
         Optional<AdoptionResponse> adoptionResponse = adoptionService.findAdoptById(id);
-        return ResponseEntity.ok(adoptionResponse);
+        return adoptionResponse.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping("/create")
@@ -39,20 +40,23 @@ public class AdoptionController {
     }
 
     @PutMapping("/trialdays/success/{id}")
-    public ResponseEntity<Optional<AdoptionResponse>> trialdaysSuccess(@PathVariable Long id) {
+    public ResponseEntity<AdoptionResponse> trialdaysSuccess(@PathVariable Long id) {
         Optional<AdoptionResponse> adoptionResponse = adoptionService.finishTrial(id);
-        return ResponseEntity.ok(adoptionResponse);
+        return adoptionResponse.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PutMapping("/trialdays/extend/{id}")
-    public ResponseEntity<Optional<AdoptionResponse>> trialdaysExtend(@PathVariable Long id, @RequestBody int extendId) {
+    public ResponseEntity<AdoptionResponse> trialdaysExtend(@PathVariable Long id, @RequestBody int extendId) {
         Optional<AdoptionResponse> adoptionResponse = adoptionService.extendTrial(id, extendId);
-        return ResponseEntity.ok(adoptionResponse);
+        return adoptionResponse.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PutMapping("/trialdays/fail/{id}")
-    public ResponseEntity<Optional<AdoptionResponse>> trialdaysFail(@PathVariable Long id) {
+    public ResponseEntity<AdoptionResponse> trialdaysFail(@PathVariable Long id) {
         Optional<AdoptionResponse> adoptionResponse = adoptionService.failTrial(id);
-        return ResponseEntity.ok(adoptionResponse);
+        return adoptionResponse.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 }

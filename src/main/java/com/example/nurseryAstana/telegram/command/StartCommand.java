@@ -45,6 +45,7 @@ public class StartCommand implements BotCommand {
                 "Помогаю отправлять отчёты о питомцах.\n" +
                 "\n" +
                 "Чтобы начать — набери:\n" +
+                "/animal\n" +
                 "/report\n" +
                 "\n" +
                 "Если нужно описание всех команд — используй:\n" +
