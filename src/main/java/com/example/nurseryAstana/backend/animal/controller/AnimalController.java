@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/animal")
@@ -24,8 +23,10 @@ public class AnimalController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<Optional<AnimalResponse>> findById(@PathVariable Long id) {
-        return ResponseEntity.ok(animalService.findAnimalById(id));
+    public ResponseEntity<AnimalResponse> findById(@PathVariable Long id) {
+        return animalService.findAnimalById(id)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping("/create")
@@ -39,7 +40,7 @@ public class AnimalController {
     }
 
     @DeleteMapping("/remove/{id}")
-    public ResponseEntity<Void> deleteAnimal(@RequestBody Long id) {
+    public ResponseEntity<Void> deleteAnimal(@PathVariable Long id) {
         animalService.removeAnimalById(id);
         return ResponseEntity.noContent().build();
     }

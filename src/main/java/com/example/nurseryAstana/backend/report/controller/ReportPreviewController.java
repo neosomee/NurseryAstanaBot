@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.ByteArrayResource;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +31,9 @@ import java.util.Optional;
 public class ReportPreviewController {
 
     private final ReportService reportService;
+
+    @Value("${app.upload.reports-dir:uploads/reports}")
+    private String reportsUploadDir;
 
     /**
      * Возвращает изображение, прикреплённое к репорту.
@@ -59,10 +63,10 @@ public class ReportPreviewController {
         }
 
         try {
-            String photoUrl = report.getPhotoUrl(); // например: /files/report-...jpg
+            String photoUrl = report.getPhotoUrl();
             String fileName = photoUrl.replaceFirst("^/files/", "");
 
-            Path uploadDir = Paths.get("uploads/reports").toAbsolutePath().normalize();
+            Path uploadDir = Paths.get(reportsUploadDir).toAbsolutePath().normalize();
             Path filePath = uploadDir.resolve(fileName);
 
             if (!Files.exists(filePath)) {
