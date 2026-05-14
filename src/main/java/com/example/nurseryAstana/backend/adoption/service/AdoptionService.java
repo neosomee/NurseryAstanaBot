@@ -15,7 +15,7 @@ public interface AdoptionService {
     public void removeAdoptById(Long adoptionid);
 
 
-    public Optional<AdoptionResponse> finishTrial(Long id);
-    public Optional<AdoptionResponse> extendTrial(Long id, int daysToAdd);
-    public Optional<AdoptionResponse> failTrial(Long id);
+    public AdoptionResponse finishTrial(Long id);
+    public AdoptionResponse extendTrial(Long id, int daysToAdd);
+    public AdoptionResponse failTrial(Long id);
 }
