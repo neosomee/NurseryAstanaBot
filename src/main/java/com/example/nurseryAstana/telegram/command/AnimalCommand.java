@@ -1,26 +1,32 @@
 package com.example.nurseryAstana.telegram.command;
 
-import com.example.nurseryAstana.backend.animal.dto.AnimalResponse;
-import com.example.nurseryAstana.backend.animal.model.AnimalStatus;
+import com.example.nurseryAstana.backend.adoption.model.Adoption;
+import com.example.nurseryAstana.backend.adoption.model.AdoptionStatus;
+import com.example.nurseryAstana.backend.animal.model.Animal;
 import com.example.nurseryAstana.backend.animal.model.Species;
-import com.example.nurseryAstana.backend.animal.service.impl.AnimalServiceImple;
+import com.example.nurseryAstana.telegram.service.TelegramAnimalAdoptionService;
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.model.Message;
+import com.pengrad.telegrambot.model.request.InlineKeyboardButton;
+import com.pengrad.telegrambot.model.request.InlineKeyboardMarkup;
 import com.pengrad.telegrambot.request.SendMessage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
 public class AnimalCommand implements BotCommand {
 
+    public static final String TAKE_ANIMAL_CALLBACK = "TAKE_ANIMAL";
+    public static final String DECLINE_ANIMAL_CALLBACK = "DECLINE_ANIMAL";
+
     private static final int MAX_DESCRIPTION_LENGTH = 160;
 
     private final TelegramBot telegramBot;
-    private final AnimalServiceImple animalService;
+    private final TelegramAnimalAdoptionService animalAdoptionService;
 
     @Override
     public boolean supports(String command) {
@@ -34,42 +40,80 @@ public class AnimalCommand implements BotCommand {
 
     @Override
     public void execute(Long chatId, Message message) {
-        List<AnimalResponse> animals = animalService.findAllAnimal();
-        telegramBot.execute(new SendMessage(chatId, formatAnimalsMessage(animals)));
-    }
+        Long telegramId = message != null && message.from() != null ? message.from().id() : chatId;
+        Optional<Adoption> currentAdoption = animalAdoptionService.findCurrentAdoption(telegramId);
 
-    private String formatAnimalsMessage(List<AnimalResponse> animals) {
-        if (animals == null || animals.isEmpty()) {
-            return "Пока нет животных для усыновления";
+        currentAdoption.ifPresent(adoption ->
+                telegramBot.execute(new SendMessage(chatId, formatCurrentAnimalMessage(adoption)))
+        );
+
+        List<Animal> availableAnimals = animalAdoptionService.findAvailableAnimals();
+        if (availableAnimals.isEmpty()) {
+            telegramBot.execute(new SendMessage(chatId, "Пока нет животных для усыновления"));
+            return;
         }
 
-        List<String> blocks = new ArrayList<>();
-        for (AnimalResponse animal : animals) {
-            blocks.add(formatAnimalBlock(animal));
+        for (Animal animal : availableAnimals) {
+            telegramBot.execute(new SendMessage(chatId, formatAvailableAnimalMessage(animal))
+                    .replyMarkup(animalActionsKeyboard(animal.getId())));
         }
-
-        return String.join("\n\n", blocks);
     }
 
-    private String formatAnimalBlock(AnimalResponse animal) {
-        StringBuilder block = new StringBuilder();
-        block.append(speciesEmoji(animal.getSpecies()))
-                .append(" ")
-                .append(hasText(animal.getName()) ? animal.getName().trim() : speciesLabel(animal.getSpecies()));
+    private InlineKeyboardMarkup animalActionsKeyboard(Long animalId) {
+        return new InlineKeyboardMarkup(
+                new InlineKeyboardButton("Взять").callbackData(takeCallback(animalId)),
+                new InlineKeyboardButton("Отказаться").callbackData(declineCallback(animalId))
+        );
+    }
 
-        appendLine(block, "Вид", speciesLabel(animal.getSpecies()));
-        appendLine(block, "Порода", animal.getBreed());
-        appendLine(block, "Возраст", ageLabel(animal.getAge()));
-        appendLine(block, "Статус", statusLabel(animal.getStatus()));
-        appendLine(block, "Описание", truncate(animal.getDescription()));
+    public static String takeCallback(Long animalId) {
+        return TAKE_ANIMAL_CALLBACK + ":" + animalId;
+    }
 
-        return block.toString();
+    public static String declineCallback(Long animalId) {
+        return DECLINE_ANIMAL_CALLBACK + ":" + animalId;
+    }
+
+    public static boolean isTakeCallback(String data) {
+        return data != null && data.startsWith(TAKE_ANIMAL_CALLBACK + ":");
+    }
+
+    public static boolean isDeclineCallback(String data) {
+        return data != null && data.startsWith(DECLINE_ANIMAL_CALLBACK + ":");
+    }
+
+    public static Long animalIdFromCallback(String data) {
+        if (data == null || !data.contains(":")) {
+            throw new IllegalArgumentException("Некорректные данные кнопки");
+        }
+        return Long.valueOf(data.substring(data.indexOf(':') + 1));
+    }
+
+    private String formatCurrentAnimalMessage(Adoption adoption) {
+        StringBuilder text = new StringBuilder("Ваше текущее животное:");
+        Animal animal = adoption.getAnimal();
+        appendLine(text, "Имя", animal != null ? animal.getName() : null);
+        appendLine(text, "Вид", animal != null ? speciesLabel(animal.getSpecies()) : null);
+        appendLine(text, "Возраст", animal != null ? ageLabel(animal.getAge()) : null);
+        appendLine(text, "Статус", adoptionStatusLabel(adoption.getStatus()));
+        return text.toString();
+    }
+
+    private String formatAvailableAnimalMessage(Animal animal) {
+        StringBuilder text = new StringBuilder();
+        appendLine(text, "Имя", animal.getName());
+        appendLine(text, "Вид", speciesLabel(animal.getSpecies()));
+        appendLine(text, "Возраст", ageLabel(animal.getAge()));
+        appendLine(text, "Описание", truncate(animal.getDescription()));
+        return text.toString().trim();
     }
 
     private void appendLine(StringBuilder text, String label, String value) {
         if (hasText(value)) {
-            text.append("\n")
-                    .append(label)
+            if (!text.isEmpty()) {
+                text.append("\n");
+            }
+            text.append(label)
                     .append(": ")
                     .append(value.trim());
         }
@@ -81,23 +125,12 @@ public class AnimalCommand implements BotCommand {
 
     private String speciesLabel(Species species) {
         if (species == null) {
-            return "Животное";
+            return null;
         }
         return switch (species) {
             case DOG -> "Собака";
             case CAT -> "Кошка";
             case OTHER -> "Другое животное";
-        };
-    }
-
-    private String speciesEmoji(Species species) {
-        if (species == null) {
-            return "🐾";
-        }
-        return switch (species) {
-            case DOG -> "🐶";
-            case CAT -> "🐱";
-            case OTHER -> "🐾";
         };
     }
 
@@ -123,17 +156,15 @@ public class AnimalCommand implements BotCommand {
         return "лет";
     }
 
-    private String statusLabel(AnimalStatus status) {
+    private String adoptionStatusLabel(AdoptionStatus status) {
         if (status == null) {
             return null;
         }
         return switch (status) {
-            case SEEKS_HOME -> "Ищет дом";
-            case IN_FOSTER -> "На передержке";
-            case QUARANTINE -> "На карантине";
-            case RESERVED -> "Забронирован";
-            case ADOPTED -> "Уже дома";
-            case NOT_AVAILABLE -> "Не ищет дом";
+            case TRIAL -> "Испытательный срок";
+            case EXTENDS -> "Испытательный срок продлен";
+            case SUCCESS -> "Усыновление завершено";
+            case FAILED -> "Усыновление не состоялось";
         };
     }
 

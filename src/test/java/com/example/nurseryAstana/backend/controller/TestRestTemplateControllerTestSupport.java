@@ -1,6 +1,6 @@
 package com.example.nurseryAstana.backend.controller;
 
-import com.example.nurseryAstana.backend.adoption.service.imple.AdoptionServiceImpl;
+import com.example.nurseryAstana.backend.adoption.service.AdoptionService;
 import com.example.nurseryAstana.backend.animal.service.impl.AnimalServiceImple;
 import com.example.nurseryAstana.backend.report.service.ReportService;
 import com.example.nurseryAstana.backend.user.service.imple.UserServiceImple;
@@ -43,7 +43,7 @@ public abstract class TestRestTemplateControllerTestSupport {
     protected AnimalServiceImple animalService;
 
     @MockitoBean
-    protected AdoptionServiceImpl adoptionService;
+    protected AdoptionService adoptionService;
 
     @MockitoBean
     protected ReportService reportService;

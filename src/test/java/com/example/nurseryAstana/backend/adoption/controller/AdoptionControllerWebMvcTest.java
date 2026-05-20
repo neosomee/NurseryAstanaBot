@@ -3,7 +3,7 @@ package com.example.nurseryAstana.backend.adoption.controller;
 import com.example.nurseryAstana.backend.adoption.dto.AdoptionResponse;
 import com.example.nurseryAstana.backend.adoption.dto.CreateAdoptionRequest;
 import com.example.nurseryAstana.backend.adoption.model.AdoptionStatus;
-import com.example.nurseryAstana.backend.adoption.service.imple.AdoptionServiceImpl;
+import com.example.nurseryAstana.backend.adoption.service.AdoptionService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +39,7 @@ class AdoptionControllerWebMvcTest {
     private ObjectMapper objectMapper;
 
     @MockitoBean
-    private AdoptionServiceImpl adoptionService;
+    private AdoptionService adoptionService;
 
     @Test
     void findAllAdoptReturnsAdoptions() throws Exception {
@@ -115,7 +115,7 @@ class AdoptionControllerWebMvcTest {
 
     @Test
     void trialdaysSuccessFinishesTrial() throws Exception {
-        when(adoptionService.finishTrial(1L)).thenReturn(Optional.of(adoption(1L, AdoptionStatus.SUCCESS)));
+        when(adoptionService.finishTrial(1L)).thenReturn(adoption(1L, AdoptionStatus.SUCCESS));
 
         mockMvc.perform(put("/adoptions/trialdays/success/{id}", 1L))
                 .andExpect(status().isOk())
@@ -127,19 +127,6 @@ class AdoptionControllerWebMvcTest {
         verifyNoMoreInteractions(adoptionService);
     }
 
-
-    @Test
-    void trialdaysExtendReturnsNotFoundWhenMissing() throws Exception {
-        when(adoptionService.extendTrial(99L, 5)).thenReturn(Optional.empty());
-
-        mockMvc.perform(put("/adoptions/trialdays/extend/{id}", 99L)
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content("5"))
-                .andExpect(status().isNotFound());
-
-        verify(adoptionService).extendTrial(99L, 5);
-        verifyNoMoreInteractions(adoptionService);
-    }
 
     private static AdoptionResponse adoption(Long id, AdoptionStatus status) {
         AdoptionResponse response = new AdoptionResponse();

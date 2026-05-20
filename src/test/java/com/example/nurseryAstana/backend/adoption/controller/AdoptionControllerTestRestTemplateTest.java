@@ -104,7 +104,7 @@ class AdoptionControllerTestRestTemplateTest extends TestRestTemplateControllerT
 
     @Test
     void trialdaysSuccessReturnsJsonAdoption() throws Exception {
-        when(adoptionService.finishTrial(1L)).thenReturn(Optional.of(adoption(1L, AdoptionStatus.SUCCESS)));
+        when(adoptionService.finishTrial(1L)).thenReturn(adoption(1L, AdoptionStatus.SUCCESS));
 
         ResponseEntity<String> response = restTemplate.exchange("/adoptions/trialdays/success/{id}", HttpMethod.PUT, HttpEntity.EMPTY, String.class, 1L);
 
@@ -116,20 +116,8 @@ class AdoptionControllerTestRestTemplateTest extends TestRestTemplateControllerT
     }
 
     @Test
-    void trialdaysSuccessReturnsNotFoundWhenMissing() {
-        when(adoptionService.finishTrial(99L)).thenReturn(Optional.empty());
-
-        ResponseEntity<String> response = restTemplate.exchange("/adoptions/trialdays/success/{id}", HttpMethod.PUT, HttpEntity.EMPTY, String.class, 99L);
-
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
-        assertThat(response.getBody()).isNull();
-        verify(adoptionService).finishTrial(99L);
-        verifyNoMoreInteractions(adoptionService);
-    }
-
-    @Test
     void trialdaysExtendAcceptsJsonNumberAndReturnsJsonAdoption() throws Exception {
-        when(adoptionService.extendTrial(1L, 5)).thenReturn(Optional.of(adoption(1L, AdoptionStatus.EXTENDS)));
+        when(adoptionService.extendTrial(1L, 5)).thenReturn(adoption(1L, AdoptionStatus.EXTENDS));
 
         ResponseEntity<String> response = restTemplate.exchange(
                 "/adoptions/trialdays/extend/{id}",
@@ -147,26 +135,8 @@ class AdoptionControllerTestRestTemplateTest extends TestRestTemplateControllerT
     }
 
     @Test
-    void trialdaysExtendReturnsNotFoundWhenMissing() {
-        when(adoptionService.extendTrial(99L, 5)).thenReturn(Optional.empty());
-
-        ResponseEntity<String> response = restTemplate.exchange(
-                "/adoptions/trialdays/extend/{id}",
-                HttpMethod.PUT,
-                new HttpEntity<>(5),
-                String.class,
-                99L
-        );
-
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
-        assertThat(response.getBody()).isNull();
-        verify(adoptionService).extendTrial(99L, 5);
-        verifyNoMoreInteractions(adoptionService);
-    }
-
-    @Test
     void trialdaysFailReturnsJsonAdoption() throws Exception {
-        when(adoptionService.failTrial(1L)).thenReturn(Optional.of(adoption(1L, AdoptionStatus.FAILED)));
+        when(adoptionService.failTrial(1L)).thenReturn(adoption(1L, AdoptionStatus.FAILED));
 
         ResponseEntity<String> response = restTemplate.exchange("/adoptions/trialdays/fail/{id}", HttpMethod.PUT, HttpEntity.EMPTY, String.class, 1L);
 
@@ -174,18 +144,6 @@ class AdoptionControllerTestRestTemplateTest extends TestRestTemplateControllerT
         assertJsonContentType(response.getHeaders().getContentType());
         assertThat(objectMapper.readTree(response.getBody()).get("status").asText()).isEqualTo("FAILED");
         verify(adoptionService).failTrial(1L);
-        verifyNoMoreInteractions(adoptionService);
-    }
-
-    @Test
-    void trialdaysFailReturnsNotFoundWhenMissing() {
-        when(adoptionService.failTrial(99L)).thenReturn(Optional.empty());
-
-        ResponseEntity<String> response = restTemplate.exchange("/adoptions/trialdays/fail/{id}", HttpMethod.PUT, HttpEntity.EMPTY, String.class, 99L);
-
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
-        assertThat(response.getBody()).isNull();
-        verify(adoptionService).failTrial(99L);
         verifyNoMoreInteractions(adoptionService);
     }
 
