@@ -34,3 +34,7 @@ build/
 
 ### Local env ###
 .env
+
+### Uploaded files ###
+upload/
+uploads/

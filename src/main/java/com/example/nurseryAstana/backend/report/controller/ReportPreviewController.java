@@ -32,7 +32,7 @@ public class ReportPreviewController {
 
     private final ReportService reportService;
 
-    @Value("${app.upload.reports-dir:uploads/reports}")
+    @Value("${app.upload-dir}")
     private String reportsUploadDir;
 
     /**
