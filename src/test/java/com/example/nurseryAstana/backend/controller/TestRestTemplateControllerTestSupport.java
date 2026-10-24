@@ -4,6 +4,7 @@ import com.example.nurseryAstana.backend.adoption.service.AdoptionService;
 import com.example.nurseryAstana.backend.animal.service.impl.AnimalServiceImpl;
 import com.example.nurseryAstana.backend.report.service.ReportService;
 import com.example.nurseryAstana.backend.user.service.impl.UserServiceImpl;
+import com.example.nurseryAstana.telegram.service.TelegramAnimalAdoptionService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pengrad.telegrambot.TelegramBot;
 import org.junit.jupiter.api.BeforeEach;
@@ -51,9 +52,13 @@ public abstract class TestRestTemplateControllerTestSupport {
     @MockitoBean
     protected UserServiceImpl userService;
 
+    @MockitoBean
+    protected TelegramAnimalAdoptionService telegramAnimalAdoptionService;
+
     @BeforeEach
     void resetMocks() {
-        reset(telegramBot, animalService, adoptionService, reportService, userService);
+        reset(telegramBot, animalService, adoptionService, reportService, userService,
+                telegramAnimalAdoptionService);
     }
 
     protected static void assertJsonContentType(MediaType contentType) {
