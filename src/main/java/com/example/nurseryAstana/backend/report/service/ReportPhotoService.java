@@ -3,6 +3,7 @@ package com.example.nurseryAstana.backend.report.service;
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.request.GetFile;
 import com.pengrad.telegrambot.response.GetFileResponse;
+import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.OkHttpClient;
@@ -11,6 +12,7 @@ import okhttp3.Response;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -41,6 +43,17 @@ public class ReportPhotoService {
                     .readTimeout(120, TimeUnit.SECONDS)
                     .writeTimeout(120, TimeUnit.SECONDS)
                     .build();
+
+    /**
+     * Создаёт директорию для фото репортов при старте приложения,
+     * если её ещё нет.
+     */
+    @PostConstruct
+    void initUploadDir() throws IOException {
+        Path uploadPath = Paths.get(uploadDir).toAbsolutePath().normalize();
+        Files.createDirectories(uploadPath);
+        log.info("Upload directory: {}", uploadPath);
+    }
 
     public String saveReportPhoto(
             Long telegramId,

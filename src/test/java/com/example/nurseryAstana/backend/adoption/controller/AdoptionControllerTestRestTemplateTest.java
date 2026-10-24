@@ -26,7 +26,7 @@ class AdoptionControllerTestRestTemplateTest extends TestRestTemplateControllerT
 
     @Test
     void findAllAdoptReturnsJsonAdoptions() throws Exception {
-        when(adoptionService.findAllAdopt()).thenReturn(List.of(adoption(1L, AdoptionStatus.TRIAL), adoption(2L, AdoptionStatus.SUCCESS)));
+        when(adoptionService.findAllAdoptions()).thenReturn(List.of(adoption(1L, AdoptionStatus.TRIAL), adoption(2L, AdoptionStatus.SUCCESS)));
 
         ResponseEntity<String> response = restTemplate.getForEntity("/adoptions", String.class);
 
@@ -42,13 +42,13 @@ class AdoptionControllerTestRestTemplateTest extends TestRestTemplateControllerT
         assertThat(body.get(0).get("status").asText()).isEqualTo("TRIAL");
         assertThat(body.get(1).get("status").asText()).isEqualTo("SUCCESS");
 
-        verify(adoptionService).findAllAdopt();
+        verify(adoptionService).findAllAdoptions();
         verifyNoMoreInteractions(adoptionService);
     }
 
     @Test
     void getAllAdoptionReturnsJsonAdoption() throws Exception {
-        when(adoptionService.findAdoptById(1L)).thenReturn(Optional.of(adoption(1L, AdoptionStatus.TRIAL)));
+        when(adoptionService.findAdoptionById(1L)).thenReturn(Optional.of(adoption(1L, AdoptionStatus.TRIAL)));
 
         ResponseEntity<String> response = restTemplate.getForEntity("/adoptions/{id}", String.class, 1L);
 
@@ -58,19 +58,19 @@ class AdoptionControllerTestRestTemplateTest extends TestRestTemplateControllerT
         assertThat(body.get("id").asLong()).isEqualTo(1L);
         assertThat(body.get("status").asText()).isEqualTo("TRIAL");
 
-        verify(adoptionService).findAdoptById(1L);
+        verify(adoptionService).findAdoptionById(1L);
         verifyNoMoreInteractions(adoptionService);
     }
 
     @Test
     void getAllAdoptionReturnsNotFoundWhenMissing() {
-        when(adoptionService.findAdoptById(99L)).thenReturn(Optional.empty());
+        when(adoptionService.findAdoptionById(99L)).thenReturn(Optional.empty());
 
         ResponseEntity<String> response = restTemplate.getForEntity("/adoptions/{id}", String.class, 99L);
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
         assertThat(response.getBody()).isNull();
-        verify(adoptionService).findAdoptById(99L);
+        verify(adoptionService).findAdoptionById(99L);
         verifyNoMoreInteractions(adoptionService);
     }
 
@@ -98,12 +98,12 @@ class AdoptionControllerTestRestTemplateTest extends TestRestTemplateControllerT
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
         assertThat(response.getBody()).isNull();
-        verify(adoptionService).removeAdoptById(1L);
+        verify(adoptionService).removeAdoptionById(1L);
         verifyNoMoreInteractions(adoptionService);
     }
 
     @Test
-    void trialdaysSuccessReturnsJsonAdoption() throws Exception {
+    void trialDaysSuccessReturnsJsonAdoption() throws Exception {
         when(adoptionService.finishTrial(1L)).thenReturn(adoption(1L, AdoptionStatus.SUCCESS));
 
         ResponseEntity<String> response = restTemplate.exchange("/adoptions/trialdays/success/{id}", HttpMethod.PUT, HttpEntity.EMPTY, String.class, 1L);
@@ -116,7 +116,7 @@ class AdoptionControllerTestRestTemplateTest extends TestRestTemplateControllerT
     }
 
     @Test
-    void trialdaysExtendAcceptsJsonNumberAndReturnsJsonAdoption() throws Exception {
+    void trialDaysExtendAcceptsJsonNumberAndReturnsJsonAdoption() throws Exception {
         when(adoptionService.extendTrial(1L, 5)).thenReturn(adoption(1L, AdoptionStatus.EXTENDS));
 
         ResponseEntity<String> response = restTemplate.exchange(
@@ -135,7 +135,7 @@ class AdoptionControllerTestRestTemplateTest extends TestRestTemplateControllerT
     }
 
     @Test
-    void trialdaysFailReturnsJsonAdoption() throws Exception {
+    void trialDaysFailReturnsJsonAdoption() throws Exception {
         when(adoptionService.failTrial(1L)).thenReturn(adoption(1L, AdoptionStatus.FAILED));
 
         ResponseEntity<String> response = restTemplate.exchange("/adoptions/trialdays/fail/{id}", HttpMethod.PUT, HttpEntity.EMPTY, String.class, 1L);

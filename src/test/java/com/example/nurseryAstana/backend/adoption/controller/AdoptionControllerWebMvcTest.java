@@ -43,7 +43,7 @@ class AdoptionControllerWebMvcTest {
 
     @Test
     void findAllAdoptReturnsAdoptions() throws Exception {
-        when(adoptionService.findAllAdopt()).thenReturn(List.of(adoption(1L, AdoptionStatus.TRIAL), adoption(2L, AdoptionStatus.SUCCESS)));
+        when(adoptionService.findAllAdoptions()).thenReturn(List.of(adoption(1L, AdoptionStatus.TRIAL), adoption(2L, AdoptionStatus.SUCCESS)));
 
         mockMvc.perform(get("/adoptions"))
                 .andExpect(status().isOk())
@@ -57,13 +57,13 @@ class AdoptionControllerWebMvcTest {
                 .andExpect(jsonPath("$[0].status").value("TRIAL"))
                 .andExpect(jsonPath("$[1].status").value("SUCCESS"));
 
-        verify(adoptionService).findAllAdopt();
+        verify(adoptionService).findAllAdoptions();
         verifyNoMoreInteractions(adoptionService);
     }
 
     @Test
     void getAllAdoptionReturnsAdoptionWhenPresent() throws Exception {
-        when(adoptionService.findAdoptById(1L)).thenReturn(Optional.of(adoption(1L, AdoptionStatus.TRIAL)));
+        when(adoptionService.findAdoptionById(1L)).thenReturn(Optional.of(adoption(1L, AdoptionStatus.TRIAL)));
 
         mockMvc.perform(get("/adoptions/{id}", 1L))
                 .andExpect(status().isOk())
@@ -71,18 +71,18 @@ class AdoptionControllerWebMvcTest {
                 .andExpect(jsonPath("$.id").value(1L))
                 .andExpect(jsonPath("$.status").value("TRIAL"));
 
-        verify(adoptionService).findAdoptById(1L);
+        verify(adoptionService).findAdoptionById(1L);
         verifyNoMoreInteractions(adoptionService);
     }
 
     @Test
     void getAllAdoptionReturnsNotFoundWhenMissing() throws Exception {
-        when(adoptionService.findAdoptById(99L)).thenReturn(Optional.empty());
+        when(adoptionService.findAdoptionById(99L)).thenReturn(Optional.empty());
 
         mockMvc.perform(get("/adoptions/{id}", 99L))
                 .andExpect(status().isNotFound());
 
-        verify(adoptionService).findAdoptById(99L);
+        verify(adoptionService).findAdoptionById(99L);
         verifyNoMoreInteractions(adoptionService);
     }
 
@@ -109,12 +109,12 @@ class AdoptionControllerWebMvcTest {
         mockMvc.perform(delete("/adoptions/remove/{id}", 1L))
                 .andExpect(status().isNoContent());
 
-        verify(adoptionService).removeAdoptById(1L);
+        verify(adoptionService).removeAdoptionById(1L);
         verifyNoMoreInteractions(adoptionService);
     }
 
     @Test
-    void trialdaysSuccessFinishesTrial() throws Exception {
+    void trialDaysSuccessFinishesTrial() throws Exception {
         when(adoptionService.finishTrial(1L)).thenReturn(adoption(1L, AdoptionStatus.SUCCESS));
 
         mockMvc.perform(put("/adoptions/trialdays/success/{id}", 1L))

@@ -3,7 +3,7 @@ package com.example.nurseryAstana.backend.report.controller;
 import com.example.nurseryAstana.backend.report.model.Report;
 import com.example.nurseryAstana.backend.report.service.ReportService;
 import com.example.nurseryAstana.backend.user.model.User;
-import com.example.nurseryAstana.backend.user.service.imple.UserServiceImple;
+import com.example.nurseryAstana.backend.user.service.impl.UserServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -32,7 +32,7 @@ class NurseryAstanaControllerWebMvcTest {
     private ReportService reportService;
 
     @MockitoBean
-    private UserServiceImple userService;
+    private UserServiceImpl userService;
 
     @Test
     void getAllUsersReturnsUsers() throws Exception {

@@ -31,7 +31,6 @@ class ReportPreviewControllerTestRestTemplateTest extends TestRestTemplateContro
 
     @DynamicPropertySource
     static void registerPreviewProperties(DynamicPropertyRegistry registry) {
-        registry.add("app.upload.reports-dir", () -> UPLOAD_DIR.toString());
         registry.add("app.upload-dir", () -> UPLOAD_DIR.toString());
     }
 

@@ -4,7 +4,7 @@ import com.example.nurseryAstana.backend.animal.dto.AnimalResponse;
 import com.example.nurseryAstana.backend.animal.dto.CreateAnimalRequest;
 import com.example.nurseryAstana.backend.animal.model.AnimalStatus;
 import com.example.nurseryAstana.backend.animal.model.Species;
-import com.example.nurseryAstana.backend.animal.service.impl.AnimalServiceImple;
+import com.example.nurseryAstana.backend.animal.service.impl.AnimalServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +39,7 @@ class AnimalControllerWebMvcTest {
     private ObjectMapper objectMapper;
 
     @MockitoBean
-    private AnimalServiceImple animalService;
+    private AnimalServiceImpl animalService;
 
     @Test
     void findAllReturnsAnimals() throws Exception {
@@ -142,7 +142,7 @@ class AnimalControllerWebMvcTest {
     }
 
     @Test
-    void deleteAllAnimalRemovesAll() throws Exception {
+    void deleteAllAnimalsRemovesAll() throws Exception {
         mockMvc.perform(delete("/animal/remove/all"))
                 .andExpect(status().isNoContent());
 

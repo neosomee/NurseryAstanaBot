@@ -136,7 +136,7 @@ class AnimalControllerTestRestTemplateTest extends TestRestTemplateControllerTes
     }
 
     @Test
-    void deleteAllAnimalReturnsNoContent() {
+    void deleteAllAnimalsReturnsNoContent() {
         ResponseEntity<Void> response = restTemplate.exchange("/animal/remove/all", HttpMethod.DELETE, HttpEntity.EMPTY, Void.class);
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);

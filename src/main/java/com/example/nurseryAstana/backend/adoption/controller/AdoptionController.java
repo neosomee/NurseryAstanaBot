@@ -18,10 +18,10 @@ public class AdoptionController {
     private final AdoptionService adoptionService;
 
     @GetMapping
-    public ResponseEntity<List<AdoptionResponse>> findAllAdopt() {
+    public ResponseEntity<List<AdoptionResponse>> findAllAdoptions() {
 
         List<AdoptionResponse> adoptionResponseList =
-                adoptionService.findAllAdopt();
+                adoptionService.findAllAdoptions();
 
         return ResponseEntity.ok(adoptionResponseList);
     }
@@ -32,7 +32,7 @@ public class AdoptionController {
     ) {
 
         Optional<AdoptionResponse> adoptionResponse =
-                adoptionService.findAdoptById(id);
+                adoptionService.findAdoptionById(id);
 
         return adoptionResponse
                 .map(ResponseEntity::ok)
@@ -55,13 +55,13 @@ public class AdoptionController {
             @PathVariable Long id
     ) {
 
-        adoptionService.removeAdoptById(id);
+        adoptionService.removeAdoptionById(id);
 
         return ResponseEntity.noContent().build();
     }
 
     @PutMapping("/trialdays/success/{id}")
-    public ResponseEntity<AdoptionResponse> trialdaysSuccess(
+    public ResponseEntity<AdoptionResponse> trialDaysSuccess(
             @PathVariable Long id
     ) {
 
@@ -72,7 +72,7 @@ public class AdoptionController {
     }
 
     @PutMapping("/trialdays/extend/{id}")
-    public ResponseEntity<AdoptionResponse> trialdaysExtend(
+    public ResponseEntity<AdoptionResponse> trialDaysExtend(
             @PathVariable Long id,
             @RequestBody int extendId
     ) {
@@ -84,7 +84,7 @@ public class AdoptionController {
     }
 
     @PutMapping("/trialdays/fail/{id}")
-    public ResponseEntity<AdoptionResponse> trialdaysFail(
+    public ResponseEntity<AdoptionResponse> trialDaysFail(
             @PathVariable Long id
     ) {
 

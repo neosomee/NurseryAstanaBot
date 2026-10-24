@@ -1,4 +1,4 @@
-package com.example.nurseryAstana.backend.adoption.service.imple;
+package com.example.nurseryAstana.backend.adoption.service.impl;
 
 import com.example.nurseryAstana.backend.adoption.dto.AdoptionResponse;
 import com.example.nurseryAstana.backend.adoption.dto.CreateAdoptionRequest;
@@ -18,9 +18,9 @@ import com.example.nurseryAstana.backend.animal.exception.AnimalNotFoundExceptio
 import com.example.nurseryAstana.backend.animal.model.Animal;
 import com.example.nurseryAstana.backend.animal.model.AnimalStatus;
 import com.example.nurseryAstana.backend.user.model.User;
-import com.example.nurseryAstana.backend.repository.AdoptionRepository;
-import com.example.nurseryAstana.backend.repository.AnimalRepository;
-import com.example.nurseryAstana.backend.repository.UserRepository;
+import com.example.nurseryAstana.backend.adoption.repository.AdoptionRepository;
+import com.example.nurseryAstana.backend.animal.repository.AnimalRepository;
+import com.example.nurseryAstana.backend.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -44,13 +44,13 @@ public class AdoptionServiceImpl implements AdoptionService {
             EnumSet.of(AdoptionStatus.TRIAL, AdoptionStatus.EXTENDS);
 
     @Override
-    public Optional<AdoptionResponse> findAdoptById(Long adoptionId) {
+    public Optional<AdoptionResponse> findAdoptionById(Long adoptionId) {
         return adoptionRepository.findById(adoptionId)
                 .map(adoptionDtoMapping::toResponse);
     }
 
     @Override
-    public List<AdoptionResponse> findAllAdopt() {
+    public List<AdoptionResponse> findAllAdoptions() {
         return adoptionRepository.findAll()
                 .stream()
                 .map(adoptionDtoMapping::toResponse)
@@ -58,7 +58,7 @@ public class AdoptionServiceImpl implements AdoptionService {
     }
 
     @Override
-    public void removeAdoptById(Long adoptionId) {
+    public void removeAdoptionById(Long adoptionId) {
         if (!adoptionRepository.existsById(adoptionId)) {
             throw new AdoptionNotFoundException(adoptionId);
         }

@@ -1,4 +1,4 @@
-package com.example.nurseryAstana.backend.repository;
+package com.example.nurseryAstana.backend.animal.repository;
 
 import com.example.nurseryAstana.backend.animal.model.Animal;
 import com.example.nurseryAstana.backend.animal.model.AnimalStatus;
