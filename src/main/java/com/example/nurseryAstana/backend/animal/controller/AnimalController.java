@@ -2,7 +2,7 @@ package com.example.nurseryAstana.backend.animal.controller;
 
 import com.example.nurseryAstana.backend.animal.dto.AnimalResponse;
 import com.example.nurseryAstana.backend.animal.dto.CreateAnimalRequest;
-import com.example.nurseryAstana.backend.animal.service.impl.AnimalServiceImple;
+import com.example.nurseryAstana.backend.animal.service.impl.AnimalServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 public class AnimalController {
 
-    AnimalServiceImple animalService;
+    AnimalServiceImpl animalService;
 
     @GetMapping
     public ResponseEntity<List<AnimalResponse>> findAll() {
@@ -46,7 +46,7 @@ public class AnimalController {
     }
 
     @DeleteMapping("/remove/all")
-    public ResponseEntity<Void> deleteAllAnimal() {
+    public ResponseEntity<Void> deleteAllAnimals() {
         animalService.removeAllAnimals();
         return ResponseEntity.noContent().build();
     }

@@ -1,4 +1,4 @@
-package com.example.nurseryAstana.backend.repository;
+package com.example.nurseryAstana.backend.adoption.repository;
 
 import com.example.nurseryAstana.backend.adoption.model.Adoption;
 import com.example.nurseryAstana.backend.adoption.model.AdoptionStatus;

@@ -1,9 +1,9 @@
 package com.example.nurseryAstana.backend.controller;
 
 import com.example.nurseryAstana.backend.adoption.service.AdoptionService;
-import com.example.nurseryAstana.backend.animal.service.impl.AnimalServiceImple;
+import com.example.nurseryAstana.backend.animal.service.impl.AnimalServiceImpl;
 import com.example.nurseryAstana.backend.report.service.ReportService;
-import com.example.nurseryAstana.backend.user.service.imple.UserServiceImple;
+import com.example.nurseryAstana.backend.user.service.impl.UserServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pengrad.telegrambot.TelegramBot;
 import org.junit.jupiter.api.BeforeEach;
@@ -40,7 +40,7 @@ public abstract class TestRestTemplateControllerTestSupport {
     protected TelegramBot telegramBot;
 
     @MockitoBean
-    protected AnimalServiceImple animalService;
+    protected AnimalServiceImpl animalService;
 
     @MockitoBean
     protected AdoptionService adoptionService;
@@ -49,7 +49,7 @@ public abstract class TestRestTemplateControllerTestSupport {
     protected ReportService reportService;
 
     @MockitoBean
-    protected UserServiceImple userService;
+    protected UserServiceImpl userService;
 
     @BeforeEach
     void resetMocks() {

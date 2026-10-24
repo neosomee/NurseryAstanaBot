@@ -4,10 +4,10 @@ import com.example.nurseryAstana.backend.adoption.model.Adoption;
 import com.example.nurseryAstana.backend.adoption.model.AdoptionStatus;
 import com.example.nurseryAstana.backend.animal.model.Animal;
 import com.example.nurseryAstana.backend.animal.model.AnimalStatus;
-import com.example.nurseryAstana.backend.repository.AdoptionRepository;
-import com.example.nurseryAstana.backend.repository.AnimalRepository;
+import com.example.nurseryAstana.backend.adoption.repository.AdoptionRepository;
+import com.example.nurseryAstana.backend.animal.repository.AnimalRepository;
 import com.example.nurseryAstana.backend.user.model.User;
-import com.example.nurseryAstana.backend.user.service.imple.UserServiceImple;
+import com.example.nurseryAstana.backend.user.service.impl.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,7 +29,7 @@ public class TelegramAnimalAdoptionService {
 
     private final AdoptionRepository adoptionRepository;
     private final AnimalRepository animalRepository;
-    private final UserServiceImple userService;
+    private final UserServiceImpl userService;
 
     @Transactional(readOnly = true)
     public Optional<Adoption> findCurrentAdoption(Long telegramId) {

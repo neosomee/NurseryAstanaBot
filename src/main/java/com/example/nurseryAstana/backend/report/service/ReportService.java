@@ -1,9 +1,9 @@
 package com.example.nurseryAstana.backend.report.service;
 
-import com.example.nurseryAstana.backend.user.service.imple.UserServiceImple;
+import com.example.nurseryAstana.backend.user.service.impl.UserServiceImpl;
 import com.example.nurseryAstana.backend.report.model.Report;
 import com.example.nurseryAstana.backend.user.model.User;
-import com.example.nurseryAstana.backend.repository.ReportRepository;
+import com.example.nurseryAstana.backend.report.repository.ReportRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,10 +21,10 @@ import java.util.Optional;
 public class ReportService {
 
     private final ReportRepository reportRepository;
-    private final UserServiceImple userService;
+    private final UserServiceImpl userService;
 
     @Autowired
-    public ReportService(ReportRepository reportRepository, UserServiceImple userService) {
+    public ReportService(ReportRepository reportRepository, UserServiceImpl userService) {
         this.reportRepository = reportRepository;
         this.userService = userService;
     }

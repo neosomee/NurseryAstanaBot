@@ -9,10 +9,10 @@ import java.util.Optional;
 
 @Service
 public interface AdoptionService {
-    public Optional<AdoptionResponse> findAdoptById(Long adoptionid);
-    public List<AdoptionResponse> findAllAdopt();
+    public Optional<AdoptionResponse> findAdoptionById(Long adoptionId);
+    public List<AdoptionResponse> findAllAdoptions();
     public AdoptionResponse createAdoption(CreateAdoptionRequest adoptionDto);
-    public void removeAdoptById(Long adoptionid);
+    public void removeAdoptionById(Long adoptionId);
 
 
     public AdoptionResponse finishTrial(Long id);

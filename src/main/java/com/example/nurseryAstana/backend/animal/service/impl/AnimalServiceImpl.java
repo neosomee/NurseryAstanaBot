@@ -9,8 +9,8 @@ import com.example.nurseryAstana.backend.animal.exception.AnimalNotFoundExceptio
 import com.example.nurseryAstana.backend.animal.mapper.AnimalMapping;
 import com.example.nurseryAstana.backend.animal.model.Animal;
 import com.example.nurseryAstana.backend.animal.service.AnimalService;
-import com.example.nurseryAstana.backend.repository.AdoptionRepository;
-import com.example.nurseryAstana.backend.repository.AnimalRepository;
+import com.example.nurseryAstana.backend.adoption.repository.AdoptionRepository;
+import com.example.nurseryAstana.backend.animal.repository.AnimalRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
-public class AnimalServiceImple implements AnimalService {
+public class AnimalServiceImpl implements AnimalService {
 
     private static final EnumSet<AdoptionStatus> ACTIVE_TRIAL_STATUSES =
             EnumSet.of(AdoptionStatus.TRIAL, AdoptionStatus.EXTENDS);
